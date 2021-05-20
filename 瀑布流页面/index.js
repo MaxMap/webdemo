@@ -10,7 +10,6 @@
     }
     dataobj.prototype.init = function() {
         let item = null;
-        let minIdx = -1;
         for (let i = 0; i < this.min.length; i++) {
             item = this.min[i];
             item.style.width = this.itemwidth + 'px'; //赋予子集宽度
