@@ -1,0 +1,30 @@
+/* 兼容性不友好 */
+
+
+/* 样式版本 */
+
+
+/* #box {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    columns: 5;
+    column-gap: 10px;
+} */
+
+
+/* js版本 */
+
+#box {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.mini {
+    /* margin-bottom: 10px; */
+    /* height: 100%; */
+    overflow: auto;
+    position: absolute;
+}

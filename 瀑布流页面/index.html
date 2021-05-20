@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="box" class="box">
+        <div class="mini">内容区域1</div>
+        <div class="mini">内容区域2</div>
+        <div class="mini">内容区域3</div>
+        <div class="mini">内容区域4</div>
+        <div class="mini">内容区域5</div>
+        <div class="mini">内容区域6</div>
+        <div class="mini">内容区域7</div>
+        <div class="mini">内容区域8</div>
+        <div class="mini">内容区域9</div>
+        <div class="mini">内容区域0</div>
+    </div>
+</body>
+<!-- 配置随机数 -->
+<script type="text/javascript">
+    function color() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + ',' + g + ',' + b + ")";
+    }
+
+    function getRandomArbitrary(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+    let box = document.getElementById('box');
+    let children = box.getElementsByTagName('div');
+    for (let i = 0; i < children.length; i++) {
+        children[i].style.background = color();
+        children[i].style.height = getRandomArbitrary(50, 200) + 'px';
+    }
+</script>
+<script type="text/javascript" src="./index.js"></script>
+<script>
+    new dataobj({
+        el: 'box',
+        colmun: 5,
+        gap: 10
+    })
+</script>
+
+</html>
