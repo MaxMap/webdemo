@@ -22,7 +22,7 @@
 //  console.log(/[0,1]/.test('-1')); // true
 // console.log(/[0-9][0-9]/.test('-1'));//false
 
-// console.log(/[^0-9]/.test('1')); // true
+// console.log(/[^0-9]/.test('1')); // false
 // console.log(/[^0-9]/.test('-1')); // false 存在非0-9以外的内容
 
 
@@ -134,4 +134,59 @@
 // console.log(/12|34|56/.exec('1'));//null
 // console.log(/12|34|56/.exec('12'));//12
 // console.log(/12|34|56/.exec('13445'));//34
-console.log(/[(1-2|6-9)]/.exec('7'));//34
+// console.log(/[(1-2|6-9)]/.exec('7'));//34
+
+// 0-255
+/**
+ * \d 0-9
+ * [1-9]\d 10-99
+ * 1\d\d    100-199
+ * 2[0-4]\d 200-249
+ * 25[0-5]  250-255
+ */
+
+// console.log(/25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d/.exec('256'));// 25 不可取
+// console.log(/\b(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\b/.exec('156'));//156 可取
+// console.log(/^(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)$/.exec('256'));//null
+
+
+/**
+ * 断言
+ * \b \B
+ * \b 放在边界位置 代表是否存在开头前 或者开头后
+ * \B 非单词边界
+ * ^ 与 $
+ * ^ 边界前
+ * $ 边界后
+ */
+
+// console.log(/\ban/.test('an '));//true
+// console.log(/\ban\b/.test('an '));//true
+// console.log(/^(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)$/.exec('256'));//null
+
+
+
+/**
+ * 环视 
+ * ?= 紧跟着
+ * ?! 不紧跟着
+ */
+
+// console.log(/a(?=哈)/.test('a哈哈'))//true a是否紧跟着 '哈哈'
+// console.log(/a(?=哈)/.test('123'))//false
+// console.log(/a(?!哈)/.test('a123'))//true
+
+
+/**
+ * 匹配模式
+ * g global 全局匹配
+ * i ignoe case  忽略大小写
+ * m multiply 多行匹配
+ */
+// console.log('123312231'.replace(/123/,'000'));//000312231
+// console.log('12331231'.replace(/123/g,'000'));//00030001
+console.log(/123$/m.test('hello 123\n145'));//true
+
+
+
+
