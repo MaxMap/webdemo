@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Foo(){
+        this.a = '123'//指向实例
+    }
+    Foo.a = '456'//静态方法
+    Foo.prototype = {
+        a:'我是原型对象a',
+        aa:'dfsa',
+        bb:function(){
+            console.log('原型获取a',this.a)
+        }
+    }
+
+    var foo = new Foo();
+    // console.log(foo)
+    // console.log(foo.a)// 优先获取函数内部属性 没有获取原型属性
+    // console.log(foo.aa)
+    // console.log(foo.bb())//123
+    console.log(foo.__proto__ === Foo.prototype);//true
+</script>
+</html>
