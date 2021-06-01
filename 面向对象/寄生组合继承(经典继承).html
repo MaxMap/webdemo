@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 1. 寄生组合继承
+     * prototype 方法被重写
+     * */
+    // console.log([]);
+    // [] -> Array.prototype -> Object.prototype
+    function Super(){
+        this.a  = 'super'
+        this.b = [1,2,4]
+    }
+    Super.prototype.say = function(){
+        console.log('say')
+    }
+
+    function Sub(){ Super.call(this)}
+    if(!Object.create){
+        Object.create = function(proto){
+            function Fn(){}
+            Fn.prototype = proto
+            return new Fn();
+        }
+    }
+    // Sub.prototype.keys = function(){
+    //     console.log('keys')
+    // }
+    Sub.prototype = Object.create(Super.prototype);//重置prototype
+    Sub.prototype.constructor = Sub;//构造函数要用自己本身的
+    Sub.prototype.keys = function(){
+        console.log('keys')
+    }
+
+    let sub1 = new Sub();
+    let sub2 = new Sub();
+
+    // sub1 -> Sub.prototype(new Super) -> Super.prototype
+
+    sub1.say();
+    sub1.keys();
+
+    sub1.b.push(9);
+    console.log(sub1.b,'\b',sub2.b)
+
+
+</script>
+</html>

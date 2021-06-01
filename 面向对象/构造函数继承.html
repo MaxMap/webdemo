@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 1. 构造函数继承
+     * 解决引用共享问题，原型对象无法拿到
+     * */
+    // console.log([]);
+    // [] -> Array.prototype -> Object.prototype
+    function Super(){
+        this.a  = 'super'
+        this.b = [1,2,4]
+    }
+    Super.prototype.say = function(){
+        console.log(this.b)
+    }
+
+    function Sub(){ Super.call(this)}
+    // Sub.prototype = Super.prototype;
+    let sub1 = new Sub();
+    let sub2 = new Sub();
+
+    // sub1 -> Sub.prototype(new Super) -> Super.prototype
+
+    
+
+    sub1.b.push(9);
+    // sub1.say()
+    // sub2.say()
+
+    console.log(sub1.b,'\b',sub2.b)
+
+
+</script>
+</html>

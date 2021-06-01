@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 1. 组合继承
+     * 基本类型和引用问题都可以解决，但属性值会多次更新
+     * */
+    // console.log([]);
+    // [] -> Array.prototype -> Object.prototype
+    function Super(){
+        this.a  = 'super'
+        this.b = [1,2,4]
+    }
+    Super.prototype.say = function(){
+        console.log(222)
+    }
+
+    function Sub(){ Super.call(this)}
+    // Sub.prototype = new Super();
+    Sub.prototype = new Super();
+    let sub1 = new Sub();
+    let sub2 = new Sub();
+
+    // sub1 -> Sub.prototype(new Super) -> Super.prototype
+
+    sub1.say()
+
+    sub1.b.push(9);
+    console.log(sub1.b,'\b',sub2.b)
+
+
+</script>
+</html>

@@ -13,20 +13,39 @@
     function Foo(){
         this.a = '123'//指向实例
     }
-    Foo.a = '456'//静态方法
+    // Foo.a = '456'//静态方法
     Foo.prototype = {
         a:'我是原型对象a',
         aa:'dfsa',
         bb:function(){
             console.log('原型获取a',this.a)
-        }
+        },
+        constructor:Foo
     }
 
     var foo = new Foo();
-    // console.log(foo)
+    console.log(foo)
     // console.log(foo.a)// 优先获取函数内部属性 没有获取原型属性
     // console.log(foo.aa)
     // console.log(foo.bb())//123
-    console.log(foo.__proto__ === Foo.prototype);//true
+    // console.log(foo.__proto__ === Foo.prototype);//true
+    // console.log(foo.__proto__.__proto__ === Object.prototype);//true
+    // console.log(Object.getPrototypeOf(foo) === Foo.prototype);//es6 获取原型
+
+    // constructor 
+    // 如果没有定义/改动 Foo.prototype 打印为true
+    // console.log(Foo.prototype.constructor === Foo);//打印为true
+    // console.log(foo.constructor === Foo);//打印为true
+
+    //设置了prototype ,但没有设置 constructor指向，默认向上查找 找到Object
+    // console.log(foo.constructor);//ƒ Object() { [native code] }
+    // console.log(Foo.prototype.constructor === Foo);//false
+    // console.log(foo.constructor === Foo);//false
+
+    //设置了prototype 并且有constructor指向
+    // console.log(foo.constructor);//ƒ Foo(){ this.a = '123'//指向实例}
+    // console.log(Foo.prototype.constructor === Foo);//打印为true
+    // console.log(foo.constructor === Foo);//打印为true
+
 </script>
 </html>
