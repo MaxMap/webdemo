@@ -1,26 +1,42 @@
 import React from 'react';
 import Demo1 from './propsReact/demo1'
 /**
- * props 传值
- * 父传子
- * 子传父
- * 兄弟组件
+ * context
+ * 跨组件使用
+ * 
  */
-class App extends React.Component {
+// Provider 提供数据  Consumer消费数据
+// export const { Provider, Consumer } = React.createContext
+
+/**
+ * children属性：表示组件的子节点，当组件标签有子节点，props就会有该属性
+ * children属性与普通props一样，可以是任意值
+ */
+
+export default class App extends React.Component {
   state = {
-    name:'比亚迪'
+    name: '比亚迪',
+    parentMsg: '',
+    num: 0
   }
+
   render() {
     return (
-      <div>
-        <Demo1 name
-        fns={()=>console.log('我是函数')}
-        tag={<p>我是标签</p>}
-          
-        ></Demo1>
-      </div>
+      // <Provider value={this.state.name}>
+        <div>
+          <Demo1 name
+            getmsg={this.getChildMsg}
+            fns={() => console.log('我是函数')}
+            tag={<p>我是标签</p>}
+
+          >
+            <div style={{color:'red'}} key="1">我是子节点Children</div>
+          </Demo1>
+        </div>
+      // </Provider>
+
     )
   }
 }
 
-export default App;
+// export default App;
