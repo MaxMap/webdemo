@@ -1,14 +1,11 @@
-/* eslint-disable no-unused-expressions */
 import React from 'react';
-// import { Consumer } from '../App.js';
+import { Consumer } from '../App.js';
 export default class Demo4 extends React.Component {
-
     render() {
         return (
-            <div>
-                123
-
-            </div>
+            <Consumer>
+                {(name ) => <p>孙组件。获取传递下来的值:{name}</p>}
+            </Consumer>
         )
     }
 }
