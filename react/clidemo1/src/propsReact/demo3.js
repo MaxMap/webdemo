@@ -5,7 +5,7 @@ class demo3 extends React.Component {
     setNum = () =>{
         let num = this.props.num;
         num += 1
-        this.props.setNum(num)
+        this.props.setNumParent(num)
     }
 
     render(){
