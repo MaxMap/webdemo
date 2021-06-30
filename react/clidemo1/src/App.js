@@ -21,7 +21,7 @@ function withRend(WrappedComponent){
     }
   
     render(){
-      return <WrappedComponent {...this.state}></WrappedComponent>
+      return <WrappedComponent {...this.state} {...this.props}></WrappedComponent>
     }
   }
 RendDom.displayName =`withRend${getDisplayName(WrappedComponent)}`
@@ -40,6 +40,8 @@ const UserFun = props =>{
     <div>
       <p>姓名：{props.name}</p>
       <p>年龄：{props.age}</p>
+      {props.city ? (<p>城市：{props.city}</p>): null}
+      
     </div>
   )
 }
@@ -53,7 +55,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <GetUserData></GetUserData>
+        <GetUserData city="北京"></GetUserData>
       </div>
 
     )
