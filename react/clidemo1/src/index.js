@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router,Route,link} from 'react-router-dom'
 
 // <React.StrictMode> 严格模式 是一个用以标记出应用中潜在问题的工具
 ReactDOM.render(
