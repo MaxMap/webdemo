@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>用原生了解redux</h1>
+    <p><a href="https://www.reduxjs.cn/">官网</a></p>
+    <h5>定义</h5>
+    <p>
+        具有一个state 数据源，和一个action 方法，再通过一个reduxer 把他俩进行串联
+    </p>
+    <p>Tips：state数据源不要直接修改</p>
+</body>
+<script>
+    var state = {
+        todos:[
+            {
+                text:"123",
+                computed:true
+            }
+        ],
+        visfliter:'SHOW_ALL'
+    }
+    var action1 = {type:'ADD_Todo',text:'study'},
+    action2 = {type:'SET_visfliter',text:'SHOW_Down'};
+    function visfliter(state='SHOW_ALL',action){
+        switch (action.type) {
+            case 'SET_visfliter':
+                return action.text
+                break;
+        
+            default:
+                return state
+                break;
+        }
+    }
+    // state.visfliter = visfliter(state.visfliter,action2);
+    function todos(state=[],action){
+        switch (action.type) {
+            case 'ADD_Todo':
+                return state.concat({
+                    text:action.text,
+                    computed:false
+                })
+                break;
+        
+            default:
+                return state
+                break;
+        }
+    }
+    // state.todos = todos(state.todos,action1);
+    
+    function todosApp(state={},action){
+        return {
+            todos:todos(state.todos,action),
+            visfliter:visfliter(state.visfliter,action)
+        }
+    }
+    var action3 = {type:'ADD_Todo',text:'swimming'};
+    state = todosApp(state,action3)
+    console.log(state)
+</script>
+</html>
