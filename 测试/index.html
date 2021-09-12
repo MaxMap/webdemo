@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    #box>.red>span{
+        color: red;
+    }
+    #mm{
+        color: green;
+    }
+</style>
+<body>
+    <div id="box">
+        <p class="red">
+            <span id="mm">12</span>
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    // var y = 1;
+    // if(function f(){}){
+    //     // y+= typeof f;
+    // }
+    // console.log(f)//报错 Uncaught ReferenceError: f is not defined
+    // 原因：if语句中的函数不是全局性的，函数又是引用类型归为Object == true ,而函数会自动执行，为自执行函数，执行后销毁，所以内外作用域再次打印只会报错
+
+    // var output = (function(x){
+    //     delete x;
+    //     console.log('x',x)
+    //     return x;
+    // }(0))
+    // console.log(output)//0
+    // var x = 1;
+    // var output = (function(){
+    //     delete x;
+    //     return x;
+    // }())
+    // console.log(output)//0
+    let arr ='1100111001111001'.match(/1+/g).sort();
+    console.log(arr[arr.length-1].length);
+</script>
