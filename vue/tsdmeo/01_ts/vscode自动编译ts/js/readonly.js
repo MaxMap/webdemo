@@ -3,7 +3,7 @@
  * 是一个关键字，对类中的属性成员进行修饰，修饰以后外部不可随意更改
  * 构造函数中，可以对只读的属性进行修改
  */
-(function () {
+(() => {
     // class Person{
     //     readonly name:string
     //     constructor(name:string){
@@ -16,17 +16,15 @@
     //readonly 添加到否早函数形数中 该类中就有 该属性
     //同时外部函数不会被修改
     //public ,private,protected 放在形参中意思不变
-    var Person = /** @class */ (function () {
+    class Person {
         // constructor(readonly name:string = '2222'){
         //     this.name = name
         // }
-        function Person(name) {
-            if (name === void 0) { name = '2222'; }
+        constructor(name = '2222') {
             this.name = name;
             this.name = name;
         }
-        return Person;
-    }());
-    var person = new Person('朱柏忌');
+    }
+    const person = new Person('朱柏忌');
     console.log(person.name);
 })();

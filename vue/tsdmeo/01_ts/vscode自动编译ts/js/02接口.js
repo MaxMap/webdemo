@@ -4,13 +4,13 @@
  * ?: 可选
  * readonly :只读
  */
-(function () {
+(() => {
     // interface Ipserson{
     //     fistName:string,
     //     lastName?:string,
     //     readonly age:number
     // }
-    var demo = function (souce, substring) {
+    let demo = function (souce, substring) {
         return souce.search(substring) > -1;
     };
     console.log(demo('hhh哈哈', '哈'));
