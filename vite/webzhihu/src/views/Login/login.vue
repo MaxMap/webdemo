@@ -1,22 +1,8 @@
 <script setup lang="ts">
+import 'element-plus/dist/index.css'
 import {reactive} from "vue"
 import { ElMessage } from 'element-plus'
-let getCode = ()=>{
-  loginObj.codeBol = true;
-  // const dom:number = Math.floor(Math.random()*(9999-1000))+1000;
-  ElMessage('this is a message.')
-  let num = 60;
-  let timePut = setInterval(()=>{
-    if(num === 0){
-      clearInterval(timePut)
-      loginObj.codeBol = false
-      return
-    }
-    num--
-    loginObj.codeStr =num + 's'
 
-  },1000)
-}
 interface LoginObj{
   navList:String[]
   nIndex:number
@@ -39,6 +25,25 @@ let fromObj:FromObj = reactive({
 })
 let navtab = (index):void =>{
   loginObj.nIndex = index
+}
+let getCode = ()=>{
+  loginObj.codeBol = true;
+  const dom:number = Math.floor(Math.random()*(9999-1000))+1000;
+  ElMessage({
+    message: '验证码：'+dom,
+    type: 'success',
+  })
+  let num = 60;
+  let timePut = setInterval(()=>{
+    if(num === 0){
+      clearInterval(timePut)
+      loginObj.codeBol = false
+      return
+    }
+    num--
+    loginObj.codeStr =num + 's'
+
+  },1000)
 }
 
 </script>
