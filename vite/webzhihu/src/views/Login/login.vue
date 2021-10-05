@@ -2,21 +2,26 @@
 import 'element-plus/dist/index.css'
 import {reactive} from "vue"
 import { ElMessage } from 'element-plus'
+import {isPoneAvailable} from '../../rules/check'
+import { useRouter } from 'vue-router'
 
 interface LoginObj{
   navList:String[]
   nIndex:number
   codeBol:Boolean
-  codeStr:string|number
+  codeStr:string|string
+  codeNum:null|number
 }
 interface FromObj{
   phone:number|string
   password:string|number|undefined
 }
+const router = useRouter()
 let loginObj:LoginObj = reactive({
   navList:['免密码登录','密码登录'],
   nIndex:0,
   codeBol:false,
+  codeNum:null,
   codeStr:'获取验证码'
 })
 let fromObj:FromObj = reactive({
@@ -29,6 +34,7 @@ let navtab = (index):void =>{
 let getCode = ()=>{
   loginObj.codeBol = true;
   const dom:number = Math.floor(Math.random()*(9999-1000))+1000;
+  loginObj.codeNum = dom
   ElMessage({
     message: '验证码：'+dom,
     type: 'success',
@@ -45,6 +51,23 @@ let getCode = ()=>{
 
   },1000)
 }
+
+
+  let loginSubmit = ()=>{
+    if(!fromObj.phone){
+      ElMessage.error('请输入手机号')
+    }else if(!isPoneAvailable(fromObj.phone)){
+      ElMessage.error('手机号格式错误')
+    }else if(!fromObj.password){
+      ElMessage.error('请输入验证码')
+    }else if(fromObj.password != loginObj.codeNum){
+      ElMessage.error('验证码不正确')
+    }else{
+       router.push({
+        name: 'home'
+      })
+    }
+  }
 
 </script>
 
@@ -65,9 +88,10 @@ let getCode = ()=>{
             </el-row>
             <el-row align="middle">
               <el-col :span="6">验证码：</el-col>
-              <el-col :span="10"><el-input v-model="fromObj.phone" placeholder="请输入验证码" /></el-col>
+              <el-col :span="10"><el-input v-model="fromObj.password" placeholder="请输入验证码" /></el-col>
               <el-col :span="6" :offset="2"><el-button :disabled="loginObj.codeBol" @click="getCode()" type="primary" size="mini">{{loginObj.codeStr}}</el-button></el-col>
             </el-row>
+            <el-button type="primary" class="submit" @click="loginSubmit()">注册/登录</el-button>
           </div>
         </div>
       </div>
@@ -76,6 +100,21 @@ let getCode = ()=>{
 </template>
 
 <style lang="scss" scoped>
+.submit{
+  width: 100%;
+  margin-top: 30px;
+  height: 36px;
+  color: #fff;
+  background-color: #06f!important;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  border-radius: 3px;
+}
 .main{
   box-sizing: border-box;
   background-image: url(https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png);
