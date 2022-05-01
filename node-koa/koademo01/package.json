@@ -1,0 +1,23 @@
+{
+  "name": "koademo01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "prod": "cross-env NODE_ENV=production node ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-json-error": "^3.1.2",
+    "koa-router": "^10.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
