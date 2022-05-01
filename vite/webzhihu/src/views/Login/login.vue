@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import 'element-plus/dist/index.css'
-import {reactive} from "vue"
+import {reactive,onMounted} from "vue"
 import { ElMessage } from 'element-plus'
 import {isPoneAvailable} from '../../rules/check'
 import { useRouter } from 'vue-router'
@@ -16,6 +16,17 @@ interface FromObj{
   phone:number|string
   password:string|number|undefined
 }
+// onMounted(()=>{
+//   this.$http({
+//     type:'get',
+//     url:'../../rules/http/require.json'
+//   }).then(res=>{
+//     console.log(res)
+//   }).catch(err => {
+//     // console.log(err) //要回调出去
+//     reject(err) //回调
+//   })
+// })
 const router = useRouter()
 let loginObj:LoginObj = reactive({
   navList:['免密码登录','密码登录'],
@@ -28,7 +39,7 @@ let fromObj:FromObj = reactive({
   phone:'',
   password:''
 })
-let navtab = (index):void =>{
+let navtab = (index:number):void =>{
   loginObj.nIndex = index
 }
 let getCode = ()=>{
