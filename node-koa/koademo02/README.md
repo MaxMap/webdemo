@@ -9,6 +9,8 @@
 5. src/router --- 路由 解析url,分布给控制器对应的方法
 6. src/.env --- 环境配置
 7. src/service -- 数据库处理
+8. src/model --- 接口模型、同步数据表
+9. src/db --- 实例数据库
 
 ## 数据库操作
 
